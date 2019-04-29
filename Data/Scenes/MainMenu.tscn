@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Core/Scripts/MainMenu.cs" type="Script" id=1]
+[ext_resource path="res://Data/Assets/Arts/menu/background.png" type="Texture" id=2]
+[ext_resource path="res://Data/Assets/Arts/logo.png" type="Texture" id=3]
+[ext_resource path="res://Data/UI/MainMenu/MenuButton.tscn" type="PackedScene" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="BG" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 1240.0
+margin_bottom = 680.0
+
+[node name="Logo" type="TextureRect" parent="MenuContainer"]
+margin_right = 1200.0
+margin_bottom = 192.0
+texture = ExtResource( 3 )
+stretch_mode = 4
+
+[node name="ButtonContainer" type="CenterContainer" parent="MenuContainer"]
+margin_top = 196.0
+margin_right = 1200.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="MenuContainer/ButtonContainer"]
+margin_left = 486.0
+margin_top = 40.0
+margin_right = 713.0
+margin_bottom = 404.0
+custom_constants/separation = 20
+
+[node name="Play" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
+margin_right = 227.0
+margin_bottom = 76.0
+text = "Play"
+
+[node name="Options" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
+margin_top = 96.0
+margin_right = 227.0
+margin_bottom = 172.0
+text = "Options"
+
+[node name="Options2" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
+margin_top = 192.0
+margin_right = 227.0
+margin_bottom = 268.0
+text = "Credits"
+
+[node name="Quit" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
+margin_top = 288.0
+margin_right = 227.0
+margin_bottom = 364.0
+text = "Quit"

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Data/Assets/Fonts/resources/menu_option_button.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Core/Scripts/Menu/MenuListButton.cs" type="Script" id=2]
+
+[node name="MenuButton" type="Label"]
+margin_right = 365.0
+margin_bottom = 86.0
+mouse_filter = 0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Start Game"
+align = 1
+script = ExtResource( 2 )
+

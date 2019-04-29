@@ -1,0 +1,44 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Core/Scripts/Objects/Enemy.cs" type="Script" id=1]
+[ext_resource path="res://Data/Assets/Arts/enemy/enemy_tmp1.png" type="Texture" id=2]
+[ext_resource path="res://Data/Assets/Arts/enemy/enemy_tmp2.png" type="Texture" id=3]
+[ext_resource path="res://Data/Assets/Arts/enemy/enemy_tmp3.png" type="Texture" id=4]
+[ext_resource path="res://Data/Assets/Arts/enemy/enemy_tmp4.png" type="Texture" id=5]
+[ext_resource path="res://Data/Assets/Arts/enemy/enemy_tmp5.png" type="Texture" id=6]
+[ext_resource path="res://Data/Assets/Arts/enemy/enemy_tmp6.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "moving",
+"speed": 6.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 13.944
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 13.8703
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "moving"
+frame = 4
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+

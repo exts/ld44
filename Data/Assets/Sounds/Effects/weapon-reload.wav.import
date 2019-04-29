@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/weapon-reload.wav-3a8da212cdef091891f62b3d76a49a38.sample"
+
+[deps]
+
+source_file="res://Data/Assets/Sounds/Effects/weapon-reload.wav"
+dest_files=[ "res://.import/weapon-reload.wav-3a8da212cdef091891f62b3d76a49a38.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

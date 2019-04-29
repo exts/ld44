@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Data/Assets/Arts/ammo/ammo1.png" type="Texture" id=1]
+
+[node name="AmmoAvailable" type="TextureRect"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 1 )
