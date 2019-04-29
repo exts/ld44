@@ -17,7 +17,7 @@ namespace Gamma.Core.Scripts
 
         private int _currentAmmo;
 
-        private bool _waveStart = false;
+        private bool _waveStart;
 
         public override void _Ready()
         {
@@ -79,11 +79,14 @@ namespace Gamma.Core.Scripts
                 
             DeleteAmmoUiElements();
             DrawAmmoUiElements();
+            
+            _player.SetReloading(false);
         }
 
         public void WaveStart()
         {
             _waveStart = true;
+            _player.GamePaused = false;
         }
 
         private void DeleteAmmoUiElements()

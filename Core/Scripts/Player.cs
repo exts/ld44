@@ -7,9 +7,11 @@ namespace Gamma.Core.Scripts
     {
         private int _speed = 250;
         public bool CanMove = true;
+        public bool GamePaused = true;
         
         public int MaxAmmo = 15;
         public int CurrentAmmo;
+        private bool _reloading = false;
 
         private string _defaultFrame = "moving";
 
@@ -41,12 +43,32 @@ namespace Gamma.Core.Scripts
 
         public override void _Input(InputEvent @event)
         {
-            if(Input.IsMouseButtonPressed((int) ButtonList.Left) && @event.IsPressed() && CurrentAmmo > 0)
+            if(GamePaused) return;
+
+            if((Input.IsKeyPressed((int) KeyList.R) || Input.IsMouseButtonPressed((int) ButtonList.Right))
+               && @event.IsPressed() && _reloading && CurrentAmmo > 0)
+            {
+                ForceStopReload();
+                return;
+            }
+
+            if((Input.IsKeyPressed( (int) KeyList.R) || Input.IsMouseButtonPressed((int) ButtonList.Right)) 
+               && @event.IsPressed() && !_reloading)
+            {
+                if(CurrentAmmo == MaxAmmo) return;
+                
+                _reloading = true;
+                _reloadTimer.Start();
+                EmitSignal(nameof(Reloading));
+            }
+                
+            if(Input.IsMouseButtonPressed((int) ButtonList.Left) && @event.IsPressed() && CurrentAmmo > 0 && !_reloading)
             {
                 --CurrentAmmo;
 
                 if(CurrentAmmo < 1)
                 {
+                    _reloading = true;
                     _reloadTimer.Start();
                     EmitSignal(nameof(Reloading));
                 }
@@ -95,6 +117,18 @@ namespace Gamma.Core.Scripts
             CurrentAmmo = MaxAmmo;
             _reloadTimer.Stop();
             EmitSignal(nameof(ReloadingDone));
+        }
+
+        public void ForceStopReload()
+        {
+            _reloading = false;
+            _reloadTimer.Stop();
+            EmitSignal(nameof(ReloadingDone));
+        }
+
+        public void SetReloading(bool reloading)
+        {
+            _reloading = reloading;
         }
 
         public Rect2 GetRect()
