@@ -54,7 +54,6 @@
     <Compile Include="Core\Helpers\InputHelper.cs" />
     <Compile Include="Core\Helpers\ObjectLoader.cs" />
     <Compile Include="Core\SceneSwitcher.cs" />
-    <Compile Include="Core\Scripts\AmmoReloading.cs" />
     <Compile Include="Core\Scripts\Arena.cs" />
     <Compile Include="Core\Scripts\Bullet.cs" />
     <Compile Include="Core\Scripts\CreditsMenu.cs" />
@@ -63,8 +62,9 @@
     <Compile Include="Core\Scripts\MainMenu.cs" />
     <Compile Include="Core\Scripts\Menu\BackButton.cs" />
     <Compile Include="Core\Scripts\Menu\MenuListButton.cs" />
+    <Compile Include="Core\Scripts\Objects\AmmoReloading.cs" />
     <Compile Include="Core\Scripts\Objects\Enemy.cs" />
-    <Compile Include="Core\Scripts\Player.cs" />
+    <Compile Include="Core\Scripts\Objects\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

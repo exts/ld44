@@ -1,7 +1,7 @@
 using Gamma.Core.Helpers;
 using Godot;
 
-namespace Gamma.Core.Scripts
+namespace Gamma.Core.Scripts.Objects
 {
     public class Player : KinematicBody2D
     {

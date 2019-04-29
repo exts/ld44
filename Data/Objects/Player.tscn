@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Core/Scripts/Player.cs" type="Script" id=1]
+[ext_resource path="res://Core/Scripts/Objects/Player.cs" type="Script" id=1]
 [ext_resource path="res://Data/Assets/Arts/player/player1.png" type="Texture" id=2]
 [ext_resource path="res://Data/Assets/Arts/player/player2.png" type="Texture" id=3]
 [ext_resource path="res://Data/Assets/Arts/player/player3.png" type="Texture" id=4]
@@ -28,7 +28,7 @@ script = ExtResource( 1 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "moving"
-frame = 4
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

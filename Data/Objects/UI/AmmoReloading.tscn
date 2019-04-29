@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Core/Scripts/AmmoReloading.cs" type="Script" id=1]
+[ext_resource path="res://Core/Scripts/Objects/AmmoReloading.cs" type="Script" id=1]
 [ext_resource path="res://Data/Assets/Arts/ammo/reload_spinner.png" type="Texture" id=2]
 [ext_resource path="res://Data/Shaders/greyscale.tres" type="Material" id=3]
 

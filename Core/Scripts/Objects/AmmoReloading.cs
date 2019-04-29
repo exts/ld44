@@ -1,13 +1,12 @@
 using Godot;
 
-namespace Gamma.Core.Scripts
+namespace Gamma.Core.Scripts.Objects
 {
     public class AmmoReloading : Node2D
     {
         private Sprite _normalSprite;
         private Sprite _greyscaleSprite;
         private AnimationPlayer _player;
-
 
         public override void _Ready()
         {

@@ -187,3 +187,7 @@ rect_clip_content = true
 
 [node name="CurrentWave" parent="." instance=ExtResource( 6 )]
 visible = false
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="WaveTimer" type="Timer" parent="Timers"]

@@ -1,4 +1,5 @@
 using Gamma.Core.Helpers;
+using Gamma.Core.Scripts.Objects;
 using Godot;
 
 namespace Gamma.Core.Scripts
