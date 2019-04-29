@@ -6,29 +6,35 @@ namespace Gamma.Core.Scripts.Objects
 {
     public class Enemy : KinematicBody2D
     {
-        public bool Moving;
-        private int Speed = 300;
+        public bool GamePaused;
+        private int Speed = 150;
         private Vector2[] _paths = {};
+
+        public int CurrentDamage = 5;
         
+        private const int DefaultDamage = 10;
+
+        private Vector2 _destination = Vector2.Zero;
+
         public override void _Ready()
         {
         }
 
         public override void _Process(float delta)
         {
-            if(Moving)
-            {
-                MoveCharacter(delta);
-            }
+            if(GamePaused) return;
+
+            if(_destination == Vector2.Zero) return;
+            MoveAndSlide((_destination - Position).Normalized() * Speed);
         }
 
-        public void SetPaths(Navigation2D nav, Vector2 dest)
-        {
-            var paths = nav.GetSimplePath(Position, dest, false);
-            _paths = paths.Skip(1).Take(paths.Length - 1).ToArray();
-        }
+        public void SetDestination(Vector2 dest) => _destination = dest;
 
-        private void MoveCharacter(float delta)
+        /**
+         * This used to be code for moving the enemy along a navigation path to mimic path finding, didn't work out so
+         * well, so I stopped using it.
+         */
+        private void old_MoveCharacter(float delta)
         {
             var velocity = delta * Speed;            
             var spaceState = GetWorld2d().GetDirectSpaceState();
@@ -75,7 +81,6 @@ namespace Gamma.Core.Scripts.Objects
                 if (velocity < 0.0) 
                 {
                     Position = _paths[0];
-                    Moving = false;
                     break;
                 }
 
@@ -84,6 +89,17 @@ namespace Gamma.Core.Scripts.Objects
                 _paths = _paths.Skip(1).Take(_paths.Length - 1).ToArray();
                 GD.Print("Do we ever get here?");
             }
+        }
+        
+        /**
+         * We used this to get the paths from a navigation2d and then tell it where we wanted it to go.
+         * Nav2D path finding is a little wonky because it ignores objects and it's best that you do something like
+         * custom points for added padding. I'm sure custom coding could make this much nicer
+         */
+        public void old_SetPaths(Navigation2D nav, Vector2 dest)
+        {
+            var paths = nav.GetSimplePath(Position, dest, false);
+            _paths = paths.Skip(1).Take(paths.Length - 1).ToArray();
         }
     }
 }

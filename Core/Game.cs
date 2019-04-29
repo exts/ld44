@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Gamma.Core
@@ -6,6 +7,7 @@ namespace Gamma.Core
     {
         public static Game Instance => _instance ?? (_instance = new Game());
         private static Game _instance;
+        public static Random RNG = new Random();
 
         private bool _initiated;
         private Viewport _root;

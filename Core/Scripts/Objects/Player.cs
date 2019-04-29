@@ -5,7 +5,7 @@ namespace Gamma.Core.Scripts.Objects
 {
     public class Player : KinematicBody2D
     {
-        private int _speed = 250;
+        private int _speed = 200;
         public bool CanMove = true;
         public bool GamePaused = true;
         
@@ -23,6 +23,9 @@ namespace Gamma.Core.Scripts.Objects
         
         [Signal]
         public delegate void ReloadingDone();
+
+        [Signal]
+        public delegate void PositionChanged();
 
         private Timer _reloadTimer;
 
@@ -103,6 +106,13 @@ namespace Gamma.Core.Scripts.Objects
 
             velocity = velocity * _speed;
             MoveAndSlide(velocity);
+
+            EmitSignal(nameof(PositionChanged), Position);
+        }
+
+        public void EmitPosition()
+        {
+            EmitSignal(nameof(PositionChanged), Position);
         }
 
         public void CenterPlayer()

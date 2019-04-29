@@ -53,6 +53,7 @@
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\Helpers\InputHelper.cs" />
     <Compile Include="Core\Helpers\ObjectLoader.cs" />
+    <Compile Include="Core\Level\EnemySpawner.cs" />
     <Compile Include="Core\SceneSwitcher.cs" />
     <Compile Include="Core\Scripts\Arena.cs" />
     <Compile Include="Core\Scripts\Bullet.cs" />
