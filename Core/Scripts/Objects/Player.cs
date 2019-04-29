@@ -5,6 +5,8 @@ namespace Gamma.Core.Scripts.Objects
 {
     public class Player : KinematicBody2D
     {
+        public int Health = 100;
+        
         private int _speed = 200;
         public bool CanMove = true;
         public bool GamePaused = true;

@@ -135,6 +135,7 @@ namespace Gamma.Core.Scripts
             for(var x = 0; x < _spawnsPerWave; x++)
             {
                 var enemy = (Enemy) _enemyObject.Instance();
+                enemy.Connect(nameof(Enemy.DamageDealt), this, nameof(DamageDealt));
                 enemy.Position = _spawner.SelectSpawnPoint();
                 _enemyContainer.AddChild(enemy);
             }
@@ -178,6 +179,18 @@ namespace Gamma.Core.Scripts
                     enemy.CallDeferred("queue_free");
                 }
             }
+        }
+
+        public void DamageDealt(int amount)
+        {
+            if(_player.Health > 0)
+            {
+                _player.Health -= amount;
+            }
+
+            _player.Health = Mathf.Clamp(_player.Health, 0, 100);
+            
+            GD.Print($"HP: {_player.Health}");
         }
 
         private void DeleteAmmoUiElements()

@@ -6,6 +6,12 @@ namespace Gamma.Core.Scripts.Objects
 {
     public class Enemy : KinematicBody2D
     {
+        public int Health = 30;
+        public int Damage = 5;
+
+        [Signal]
+        public delegate void DamageDealt(int amount);
+        
         public bool GamePaused;
         private int Speed = 150;
         private Vector2[] _paths = {};
@@ -16,6 +22,8 @@ namespace Gamma.Core.Scripts.Objects
 
         private Vector2 _destination = Vector2.Zero;
 
+        private int _bounceAmount = 50;
+
         public override void _Ready()
         {
         }
@@ -25,7 +33,49 @@ namespace Gamma.Core.Scripts.Objects
             if(GamePaused) return;
 
             if(_destination == Vector2.Zero) return;
-            MoveAndSlide((_destination - Position).Normalized() * Speed);
+            
+            var velocity = (_destination - Position).Normalized() * Speed;
+            var collide = MoveAndCollide(velocity * delta);
+            
+            if(collide == null) return;
+            
+            HandleCollision(collide, velocity);
+        }
+
+        private void HandleCollision(KinematicCollision2D collide, Vector2 velocity)
+        {
+            if(collide.Collider is KinematicBody2D e) 
+            {
+                var direction = new Vector2();
+                if(e.Position.x > Position.x)
+                {
+                    direction.x -= _bounceAmount;
+                }
+
+                if(e.Position.x < Position.x)
+                {
+                    direction.x += _bounceAmount;
+                }
+                if(e.Position.y > Position.y)
+                {
+                    direction.y -= _bounceAmount;
+                }
+
+                if(e.Position.y < Position.y)
+                {
+                    direction.y += _bounceAmount;
+                }
+
+                Position += direction;
+            }
+
+            if(collide.Collider is Player)
+            {
+                EmitSignal(nameof(DamageDealt), Damage);
+            }
+                
+            velocity = velocity.Slide(collide.Normal);
+            MoveAndSlide(velocity);
         }
 
         public void SetDestination(Vector2 dest) => _destination = dest;
