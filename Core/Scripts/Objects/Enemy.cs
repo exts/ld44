@@ -11,6 +11,9 @@ namespace Gamma.Core.Scripts.Objects
 
         [Signal]
         public delegate void DamageDealt(int amount);
+
+        [Signal]
+        public delegate void Dead();
         
         public bool GamePaused;
         private int Speed = 150;
@@ -27,7 +30,8 @@ namespace Gamma.Core.Scripts.Objects
         
         private Timer _staminaTimer;
         private Timer _staminaResetTimer;
-        
+
+        private bool _deadqueue = false;
 
         public override void _Ready()
         {
@@ -40,6 +44,15 @@ namespace Gamma.Core.Scripts.Objects
 
         public override void _Process(float delta)
         {
+            if(Health <= 0 && !_deadqueue)
+            {
+                _deadqueue = true;
+                GamePaused = true;
+                EmitSignal(nameof(Dead));
+                CallDeferred("queue_free");
+                return;
+            }
+            
             if(GamePaused || _staminaTriggered) return;
 
             if(_destination == Vector2.Zero) return;

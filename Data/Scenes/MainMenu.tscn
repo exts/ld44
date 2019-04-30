@@ -34,31 +34,25 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="MenuContainer/ButtonContainer"]
-margin_left = 486.0
-margin_top = 40.0
-margin_right = 713.0
-margin_bottom = 404.0
+margin_left = 498.0
+margin_top = 88.0
+margin_right = 702.0
+margin_bottom = 356.0
 custom_constants/separation = 20
 
 [node name="Play" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
-margin_right = 227.0
+margin_right = 204.0
 margin_bottom = 76.0
 text = "Play"
 
-[node name="Options" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
+[node name="Credits" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
 margin_top = 96.0
-margin_right = 227.0
+margin_right = 204.0
 margin_bottom = 172.0
-text = "Options"
-
-[node name="Options2" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
-margin_top = 192.0
-margin_right = 227.0
-margin_bottom = 268.0
 text = "Credits"
 
 [node name="Quit" parent="MenuContainer/ButtonContainer/Buttons" instance=ExtResource( 4 )]
-margin_top = 288.0
-margin_right = 227.0
-margin_bottom = 364.0
+margin_top = 192.0
+margin_right = 204.0
+margin_bottom = 268.0
 text = "Quit"

@@ -9,6 +9,9 @@ namespace Gamma.Core
         private static Game _instance;
         public static Random RNG = new Random();
 
+        public static int WavesCleared = 0;
+        public static int EnemiesCleared = 0;
+
         private bool _initiated;
         private Viewport _root;
 

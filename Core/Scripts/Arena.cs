@@ -41,6 +41,9 @@ namespace Gamma.Core.Scripts
 
         public override void _Ready()
         {
+            Game.WavesCleared = 0;
+            Game.EnemiesCleared = 0;
+            
             CurrentWaveTime = MaxWaveTime;
             
             // custom cursor
@@ -95,6 +98,7 @@ namespace Gamma.Core.Scripts
         public void SpawnBullet()
         {
             var bullet = (Bullet) _bulletObject.Instance();
+            bullet.Connect(nameof(Bullet.EnemyHit), this, nameof(EnemyDamageDealt));
             bullet.Position = _player.Position;
             bullet.MoveInDirection(GetGlobalMousePosition());
             bullet.HideUntil(_player.GetRect());
@@ -139,6 +143,7 @@ namespace Gamma.Core.Scripts
             for(var x = 0; x < _spawnsPerWave; x++)
             {
                 var enemy = (Enemy) _enemyObject.Instance();
+                enemy.Connect(nameof(Enemy.Dead), this, nameof(EnemyDead));
                 enemy.Connect(nameof(Enemy.DamageDealt), this, nameof(DamageDealt));
                 enemy.Position = _spawner.SelectSpawnPoint();
                 _enemyContainer.AddChild(enemy);
@@ -194,6 +199,16 @@ namespace Gamma.Core.Scripts
 
             _player.Health = Mathf.Clamp(_player.Health, 0, 100);
             _hpbar.SetAmount(_player.Health);
+        }
+
+        public void EnemyDamageDealt(Enemy enemy)
+        {
+            enemy.Health -= _player.Damage;
+        }
+
+        public void EnemyDead()
+        {
+            Game.EnemiesCleared += 1;
         }
 
         private void DeleteAmmoUiElements()

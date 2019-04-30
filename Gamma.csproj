@@ -59,6 +59,7 @@
     <Compile Include="Core\Scripts\CreditsMenu.cs" />
     <Compile Include="Core\Scripts\Credits\CreditsLoader.cs" />
     <Compile Include="Core\Scripts\CurrentWave.cs" />
+    <Compile Include="Core\Scripts\GameOver.cs" />
     <Compile Include="Core\Scripts\MainMenu.cs" />
     <Compile Include="Core\Scripts\Menu\BackButton.cs" />
     <Compile Include="Core\Scripts\Menu\MenuListButton.cs" />
