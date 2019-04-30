@@ -64,6 +64,7 @@
     <Compile Include="Core\Scripts\Menu\BackButton.cs" />
     <Compile Include="Core\Scripts\Menu\MenuListButton.cs" />
     <Compile Include="Core\Scripts\Objects\AmmoReloading.cs" />
+    <Compile Include="Core\Scripts\Objects\Bullet.cs" />
     <Compile Include="Core\Scripts\Objects\Enemy.cs" />
     <Compile Include="Core\Scripts\Objects\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
