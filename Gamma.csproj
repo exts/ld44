@@ -56,7 +56,6 @@
     <Compile Include="Core\Level\EnemySpawner.cs" />
     <Compile Include="Core\SceneSwitcher.cs" />
     <Compile Include="Core\Scripts\Arena.cs" />
-    <Compile Include="Core\Scripts\Bullet.cs" />
     <Compile Include="Core\Scripts\CreditsMenu.cs" />
     <Compile Include="Core\Scripts\Credits\CreditsLoader.cs" />
     <Compile Include="Core\Scripts\CurrentWave.cs" />
@@ -67,6 +66,7 @@
     <Compile Include="Core\Scripts\Objects\Bullet.cs" />
     <Compile Include="Core\Scripts\Objects\Enemy.cs" />
     <Compile Include="Core\Scripts\Objects\Player.cs" />
+    <Compile Include="Core\Scripts\UI\HealthBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

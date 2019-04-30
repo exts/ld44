@@ -17,20 +17,30 @@ namespace Gamma.Core.Scripts.Objects
         private Vector2[] _paths = {};
 
         public int CurrentDamage = 5;
-        
-        private const int DefaultDamage = 10;
+        private const int DefaultDamage = 5;
 
         private Vector2 _destination = Vector2.Zero;
 
         private int _bounceAmount = 50;
 
+        private bool _staminaTriggered = false;
+        
+        private Timer _staminaTimer;
+        private Timer _staminaResetTimer;
+        
+
         public override void _Ready()
         {
+            _staminaTimer = GetNode<Timer>("StaminaTimer");
+            _staminaTimer.Connect("timeout", this, nameof(TriggerStamina));
+            
+            _staminaResetTimer = GetNode<Timer>("StaminaResetTimer");
+            _staminaResetTimer.Connect("timeout", this, nameof(ResetStamina));
         }
 
         public override void _Process(float delta)
         {
-            if(GamePaused) return;
+            if(GamePaused || _staminaTriggered) return;
 
             if(_destination == Vector2.Zero) return;
             
@@ -41,6 +51,8 @@ namespace Gamma.Core.Scripts.Objects
             
             HandleCollision(collide, velocity);
         }
+
+        public void SetDestination(Vector2 dest) => _destination = dest;
 
         private void HandleCollision(KinematicCollision2D collide, Vector2 velocity)
         {
@@ -78,7 +90,19 @@ namespace Gamma.Core.Scripts.Objects
             MoveAndSlide(velocity);
         }
 
-        public void SetDestination(Vector2 dest) => _destination = dest;
+        public void TriggerStamina()
+        {
+            _staminaTimer.Stop();
+            _staminaResetTimer.Start();
+            _staminaTriggered = true;
+        }
+
+        public void ResetStamina()
+        {
+            _staminaResetTimer.Stop();
+            _staminaTimer.Start();
+            _staminaTriggered = false;
+        }
 
         /**
          * This used to be code for moving the enemy along a navigation path to mimic path finding, didn't work out so
