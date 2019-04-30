@@ -8,6 +8,7 @@ namespace Gamma.Core.Scripts
 
         public override void _Ready()
         {
+            Input.SetMouseMode(Input.MouseMode.Visible);
             _gameOverText = GetNode<Label>("GameOverText");
             
             SetGameOverText(Game.WavesCleared, Game.EnemiesCleared);

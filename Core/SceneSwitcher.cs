@@ -6,17 +6,19 @@ namespace Gamma.Core
 {
     public enum Scenes
     {
+        Start,
         MainMenu,
-        Options,
         Credits,
+        GameOver
     }
     public class SceneSwitcher
     {
         private static readonly Dictionary<Scenes, string> ScenesDict = new Dictionary<Scenes, string>
         {
+            {Scenes.Start, "Level/Arena"},
             {Scenes.MainMenu, "MainMenu"},
-            {Scenes.Options, ""},
             {Scenes.Credits, "Credits"},
+            {Scenes.GameOver, "Level/GameOver"},
         };
 
         public static void Switch(Scenes scene)

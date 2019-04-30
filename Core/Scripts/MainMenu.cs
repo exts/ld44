@@ -11,6 +11,7 @@ namespace Gamma.Core.Scripts
 
         public override void _Ready()
         {
+            Input.SetMouseMode(Input.MouseMode.Visible);
             var buttons = GetNode<VBoxContainer>("MenuContainer/ButtonContainer/Buttons");
             SetupButtonOrder(buttons);
             UpdateButtonSelect(_buttonSelected);
@@ -81,8 +82,7 @@ namespace Gamma.Core.Scripts
             switch(btn.Text)
             {
                 case "Play":
-                    break;
-                case "Options":
+                    btn.ClickEvent = () => SceneSwitcher.Switch(Scenes.Start);
                     break;
                 case "Credits":
                     btn.ClickEvent = () => SceneSwitcher.Switch(Scenes.Credits);

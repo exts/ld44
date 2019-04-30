@@ -89,9 +89,25 @@ namespace Gamma.Core.Scripts
         {
             _cursor.Position = GetGlobalMousePosition();
 
+            if(_player.Health <= 0)
+            {
+                _waveStart = false;
+                SceneSwitcher.Switch(Scenes.GameOver);
+                return;
+            }
+
             if(_waveStart)
             {
                 UpdateEnemyDestination(_player.Position);
+            }
+        }
+
+        public override void _Input(InputEvent @event)
+        {
+            if(Input.IsKeyPressed((int) KeyList.Escape) && @event.IsPressed())
+            {
+                _waveStart = false;
+                SceneSwitcher.Switch(Scenes.MainMenu);
             }
         }
 
