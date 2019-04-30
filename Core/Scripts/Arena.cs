@@ -3,6 +3,7 @@ using System.Linq;
 using Gamma.Core.Helpers;
 using Gamma.Core.Level;
 using Gamma.Core.Scripts.Objects;
+using Gamma.Core.Scripts.UI;
 using Godot;
 
 namespace Gamma.Core.Scripts
@@ -15,7 +16,8 @@ namespace Gamma.Core.Scripts
         private CurrentWave _currentWave;
         private HBoxContainer _ammoContainer;
         private AmmoReloading _ammoReloading;
-
+        private HealthBar _hpbar;
+        
         private Timer _waveTimer;
         private Timer _spawnTimer;
 
@@ -65,6 +67,8 @@ namespace Gamma.Core.Scripts
             
             _spawnTimer = GetNode<Timer>("Timers/SpawnTimer");
             _spawnTimer.Connect("timeout", this, nameof(SpawnMonsters));
+
+            _hpbar = GetNode<HealthBar>("HealthBar");
 
             _spawnPoints = GetNode<Node2D>("SpawnPoints");
             SetupSpawnPointsInSpawner();
@@ -189,8 +193,7 @@ namespace Gamma.Core.Scripts
             }
 
             _player.Health = Mathf.Clamp(_player.Health, 0, 100);
-            
-            GD.Print($"HP: {_player.Health}");
+            _hpbar.SetAmount(_player.Health);
         }
 
         private void DeleteAmmoUiElements()
